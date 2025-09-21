@@ -171,26 +171,6 @@ def kasir_interfaces():
         print("dikembalikan".center(52).capitalize())
         print("="*52)
       
-        # struk.append("="*52)
-        # struk.append("Xioo菊地 Shop".center(52))
-        # struk.append("NIM: 241240001497".center(52))
-        # struk.append("="*52)
-        # struk.append("{:<10}{:>42}".format("Tanggal",tanggal))
-        # struk.append("{:<10}{:>42}".format("Resi",random_()))
-        # struk.append("="*52)
-        # struk.append("{:<25} {:>5} {:>8} {:>10}".format("Nama Barang","Qty","Harga","Total"))
-        # struk.append("-"*52)
-        # for nm,info in barangsss.items():
-        #     struk.append("{:<25} {:>5} {:>8} {:>10}".capitalize().format(nm,info["jml"],info["hrg"],info["ht"]))
-        # struk.append("-"*52)
-        # struk.append("{:<25} {:>5} {:>8} {:>10}".format("SUBTOTAL","","",totalsemua))
-        # struk.append("{:<25} {:>5} {:>8} {:>10}".format("BAYAR","","",bayar))
-        # struk.append("{:<25} {:>5} {:>8} {:>10}".format("KEMBALIAN","","",kembalian))
-        # struk.append("="*52)
-        # struk.append("TERIMAKASIH TELAH BERBELANJA".center(52))
-        # struk.append("barang yang dibeli tidak dapat".center(52).capitalize())
-        # struk.append("dikembalikan".center(52).capitalize())
-        # struk.append("="*52)
         t.sleep(5)
 
 
