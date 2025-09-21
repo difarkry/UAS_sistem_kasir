@@ -7,7 +7,7 @@ import time as t
 
 # MODUL
 def connection():
-    return sqlite3.connect("database/customers.db")
+    return sqlite3.connect("FILE/database/customers.db")
 
 conn = connection()
 cursor = conn.cursor()
