@@ -84,11 +84,11 @@ def kasir_interfaces():
                     print(f"Barang {hasil[1]} sedang kosong", end="\r")
                     t.sleep(tgu)   
                 elif hasil is not None and hasil != ():
-                    cursor.execute("SELECT NAMA,HARGA,STOCK FROM BARANG WHERE ID = ? OR NAMA = LOWER(?)", (pilihan,pilihan))
+                    cursor.execute("SELECT NAMA,HARGA,STOCK FROM BARANG WHERE ID = ? OR NAMA = LOWER(?) AND STOCK > 0 ", (pilihan,pilihan))
                     data = cursor.fetchone()
-                    stck = int(stock)
                     if data:
                         nama, harga, stock = data
+                        stck = int(stock)
                         while True:
                             try:
                                 jumlah = input(f"Masukan jumlah pembelian dari {hasil[1]} : ")
