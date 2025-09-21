@@ -4,7 +4,7 @@ import time as t
 import datetime 
 import random
 import string
-
+import os
 
 
 # MODUL
@@ -14,17 +14,16 @@ from database.database import connection
 conn = connection()
 cursor=conn.cursor()
 
-sekarang = datetime.datetime.now()
-tanggal = sekarang.strftime("%d-%m-%y %H:%M:%S")
-  
+
+
+
 
 klr = 1.5
 tgu = 2.5
 
-def random_():
-    karakter = string.ascii_letters + string.digits
-    angka_acak = "".join(random.choices(karakter, k=6))
-    return angka_acak
+
+
+
 
 barangsss ={}
 struk = []
@@ -51,7 +50,7 @@ def kasir_interfaces():
                 print("|" + f"     {id:<10}         {nama:<13}          {harga:<13}          {stock:<10}".upper() + "|")
             print("+"+"="*80+"+")
             print("Ketik 'stop' untuk keluar dari program")
-            print("Ketik 'tambah' atau 'add' untuk nmenghitung total")
+            print("Ketik 'tambah' atau 'add' untuk menghitung total")
             print("")
             pilihan = input("Masukan nama/ID barang : ").strip()
             if pilihan.lower()== "stop":
@@ -147,6 +146,13 @@ def kasir_interfaces():
                 print("\r"+"Masukan harga yang benar", end="\r")
                 t.sleep(3)
 # kembalian,bayar,totalsemua,sintaks for
+
+        karakter = string.ascii_letters + string.digits
+        angka_acak = "".join(random.choices(karakter, k=6))
+        waktu = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")  
+        sekarang = datetime.datetime.now()
+        tanggal = sekarang.strftime("%d-%m-%y %H:%M:%S")
+
         print("Mencetak struk...", end="\r") 
         t.sleep(3)      
         print("\r" + " " * 50 + "\r", end=" ")
@@ -155,7 +161,7 @@ def kasir_interfaces():
         print("NIM: 241240001497".center(52))
         print("="*52)
         print("{:<10}{:>42}".format("Tanggal",tanggal))
-        print("{:<10}{:>42}".format("Resi",random_()))
+        print("{:<10}{:>42}".format("Resi",angka_acak))
         print("="*52)
         print("{:<25} {:>5} {:>8} {:>10}".format("Nama Barang","Qty","Harga","Total"))
         print("-"*52)
@@ -171,26 +177,34 @@ def kasir_interfaces():
         print("dikembalikan".center(52).capitalize())
         print("="*52)
       
-        # struk.append("="*52)
-        # struk.append("Xioo菊地 Shop".center(52))
-        # struk.append("NIM: 241240001497".center(52))
-        # struk.append("="*52)
-        # struk.append("{:<10}{:>42}".format("Tanggal",tanggal))
-        # struk.append("{:<10}{:>42}".format("Resi",random_()))
-        # struk.append("="*52)
-        # struk.append("{:<25} {:>5} {:>8} {:>10}".format("Nama Barang","Qty","Harga","Total"))
-        # struk.append("-"*52)
-        # for nm,info in barangsss.items():
-        #     struk.append("{:<25} {:>5} {:>8} {:>10}".capitalize().format(nm,info["jml"],info["hrg"],info["ht"]))
-        # struk.append("-"*52)
-        # struk.append("{:<25} {:>5} {:>8} {:>10}".format("SUBTOTAL","","",totalsemua))
-        # struk.append("{:<25} {:>5} {:>8} {:>10}".format("BAYAR","","",bayar))
-        # struk.append("{:<25} {:>5} {:>8} {:>10}".format("KEMBALIAN","","",kembalian))
-        # struk.append("="*52)
-        # struk.append("TERIMAKASIH TELAH BERBELANJA".center(52))
-        # struk.append("barang yang dibeli tidak dapat".center(52).capitalize())
-        # struk.append("dikembalikan".center(52).capitalize())
-        # struk.append("="*52)
+        struk.append("="*52)
+        struk.append("Xioo菊地 Shop".center(52))
+        struk.append("NIM: 241240001497".center(52))
+        struk.append("="*52)
+        struk.append("{:<10}{:>42}".format("Tanggal",tanggal))
+        struk.append("{:<10}{:>42}".format("Resi",angka_acak))
+        struk.append("="*52)
+        struk.append("{:<25} {:>5} {:>8} {:>10}".format("Nama Barang","Qty","Harga","Total"))
+        struk.append("-"*52)
+        for nm,info in barangsss.items():
+            struk.append("{:<25} {:>5} {:>8} {:>10}".capitalize().format(nm,info["jml"],info["hrg"],info["ht"]))
+        struk.append("-"*52)
+        struk.append("{:<25} {:>5} {:>8} {:>10}".format("SUBTOTAL","","",totalsemua))
+        struk.append("{:<25} {:>5} {:>8} {:>10}".format("BAYAR","","",bayar))
+        struk.append("{:<25} {:>5} {:>8} {:>10}".format("KEMBALIAN","","",kembalian))
+        struk.append("="*52)
+        struk.append("TERIMAKASIH TELAH BERBELANJA".center(52))
+        struk.append("barang yang dibeli tidak dapat".center(52).capitalize())
+        struk.append("dikembalikan".center(52).capitalize())
+        struk.append("="*52)
         t.sleep(5)
+        os.makedirs("Struk",exist_ok=True)
+        nama_file=os.path.join("Struk",f"Struk_{waktu}.txt")
+        with open(nama_file,"a",encoding="utf-8") as f:
+            for line in struk:
+                f.write(line +"\n")
+        print(f"Struk berhasil disimpan ke: {nama_file}")
+        struk.clear()
+        barangsss.clear()
 
 
