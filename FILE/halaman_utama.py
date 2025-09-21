@@ -19,6 +19,8 @@ jawaban = [True]
 
 def awal():
     while True:    
+        jawaban.clear()
+        jawaban.append(True)
         print("+" + "="*50 + "+")   
         print("|" +f"{"SELAMAT DATANG".center(50)}"+"|")
         print("+" + "="*50 + "+")   
@@ -40,20 +42,19 @@ def awal():
             t.sleep(3)
             while jawaban[0] == True:
                 kasir_interfaces()
-                if jawaban:
-                    while True:
-                        ulang = input("Apakah Anda ingin transaksi lagi? (ya/tidak): ").strip().lower()
-                        match ulang.lower():
-                            case "ya":
-                                break
-                            case 'tidak':
-                                jawaban.clear()
-                                jawaban.append(False)
-                                break
-                            case _:
-                                print('Wrong answer')
-                else:
-                    break
+               
+                while True:
+                    ulang = input("Apakah Anda ingin transaksi lagi? (ya/tidak): ").strip().lower()
+                    match ulang.lower():
+                        case "ya":
+                            break
+                        case 'tidak':
+                            jawaban.clear()
+                            jawaban.append(False)
+                            break
+                        case _:
+                            print('Wrong answer')
+            
 
         
         elif pilih == "3":
